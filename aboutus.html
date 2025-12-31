@@ -8,44 +8,95 @@
     <style>
         :root { --fire: #e4002b; --charcoal: #1a1a1a; --white: #ffffff; --gray: #f4f4f4; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-        body { background: var(--white); color: var(--charcoal); line-height: 1.8; }
+        
+        /* Navigation Fix */
+        nav { 
+            background: var(--white); 
+            height: 80px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 5%; 
+            border-bottom: 4px solid var(--fire); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+        }
 
-        /* Navigation */
-        nav { background: var(--white); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; border-bottom: 4px solid var(--fire); position: sticky; top: 0; z-index: 1000; }
+        .logo img { 
+            height: 50px; /* Locked height to prevent full-screen expansion */
+            width: auto; 
+            display: block;
+        }
+
         .nav-links { list-style: none; display: flex; gap: 30px; }
         .nav-links a { text-decoration: none; color: var(--charcoal); font-weight: 800; text-transform: uppercase; font-size: 0.9rem; }
         .nav-links a.active { color: var(--fire); }
+
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
         .hamburger span { width: 30px; height: 3px; background: var(--fire); }
 
-        /* Sections */
-        .hero-banner { background: var(--charcoal); color: white; padding: 60px 5%; text-align: center; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
-        
-        .story-section { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; flex-wrap: wrap; }
-        .story-text { flex: 1; min-width: 300px; }
-        .team-img { flex: 1; min-width: 300px; border-radius: 15px; box-shadow: 10px 10px 0 var(--fire); }
-
-        /* Leadership Grid */
-        .leadership-header { text-align: center; margin-bottom: 40px; }
+        /* Leadership Section */
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
+        .leadership-header { text-align: center; margin-bottom: 50px; }
         .leadership-header h2 { font-size: 2.5rem; text-transform: uppercase; }
         .leadership-header span { color: var(--fire); }
 
-        .leader-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 20px; }
-        .leader-card { background: var(--gray); padding: 30px; border-radius: 20px; text-align: center; transition: 0.3s; border: 1px solid #ddd; }
-        .leader-card:hover { transform: translateY(-10px); border-color: var(--fire); }
-        
-        /* Founder specifically larger */
-        .leader-card.ceo { grid-column: 1 / -1; max-width: 500px; margin: 0 auto 20px; background: var(--white); border: 2px solid var(--fire); }
+        .leader-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 30px; 
+        }
 
-        .profile-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 5px solid var(--fire); background: #ccc; }
-        .placeholder-img { display: flex; align-items: center; justify-content: center; background: #ddd; color: #777; font-weight: bold; font-size: 0.8rem; margin: 0 auto 20px; }
+        .leader-card { 
+            background: var(--gray); 
+            padding: 40px; 
+            border-radius: 20px; 
+            text-align: center; 
+            border: 1px solid #ddd;
+            transition: 0.3s;
+        }
 
-        h3 { margin-bottom: 5px; font-size: 1.4rem; }
-        .role { color: var(--fire); font-weight: bold; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 15px; display: block; }
+        .leader-card:hover { transform: translateY(-5px); border-color: var(--fire); }
+
+        .profile-img { 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            margin: 0 auto 20px; 
+            border: 5px solid var(--fire); 
+            background: #ccc; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #777;
+        }
+
+        .role { 
+            display: block; 
+            color: var(--fire); 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            font-size: 0.9rem; 
+            margin-bottom: 10px; 
+        }
 
         @media (max-width: 768px) {
-            .nav-links { position: fixed; right: -100%; top: 0; height: 100vh; width: 80%; background: white; flex-direction: column; align-items: center; justify-content: center; transition: 0.4s; }
+            .nav-links { 
+                position: fixed; 
+                right: -100%; 
+                top: 0; 
+                height: 100vh; 
+                width: 80%; 
+                background: white; 
+                flex-direction: column; 
+                align-items: center; 
+                justify-content: center; 
+                transition: 0.4s; 
+                box-shadow: -10px 0 20px rgba(0,0,0,0.1);
+            }
             .nav-links.active { right: 0; }
             .hamburger { display: flex; z-index: 1100; }
         }
@@ -54,7 +105,9 @@
 <body>
 
     <nav>
-        <div class="logo"><img src="images/FFCLogo.png" alt="FFC Logo"></div>
+        <div class="logo">
+            <img src="images/FFCLogo.png" alt="FeatherFire Logo">
+        </div>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="menu.html">Menu</a></li>
@@ -66,43 +119,31 @@
         </div>
     </nav>
 
-    <header class="hero-banner">
-        <h1>Our <span>Heritage</span></h1>
-    </header>
-
     <div class="container">
-        <div class="story-section">
-            <div class="story-text">
-                <h2>The FeatherFire Way</h2>
-                <p>Born from a passion for the ultimate crunch, FeatherFire Chicken combines traditional flame-grilling techniques with our signature deep-fried coating. We don't just serve chicken; we serve a legacy of heat and flavor.</p>
-            </div>
-            <img src="images/Team.webp" alt="The FFC Team" class="team-img">
-        </div>
-
         <div class="leadership-header">
-            <h2>The <span>Leadership</span> Team</h2>
+            <h2>Our <span>Leadership</span> Team</h2>
         </div>
 
         <div class="leader-grid">
-            <div class="leader-card ceo">
+            <div class="leader-card">
                 <img src="images/Founder.webp" alt="Robert" class="profile-img">
                 <h3>Robert</h3>
                 <span class="role">Chief Executive Officer</span>
-                <p>The visionary behind the flame. Robert's "Golden Standard" ensures every bucket meets the FeatherFire promise of quality.</p>
+                <p>Leading the fire with a focus on flavor and community impact.</p>
             </div>
 
             <div class="leader-card">
-                <div class="profile-img placeholder-img">IMAGE PENDING</div>
-                <h3>[Name Here]</h3>
+                <div class="profile-img">COO</div>
+                <h3>[Name Pending]</h3>
                 <span class="role">Chief Operating Officer</span>
-                <p>Overseeing global operations and ensuring that the FeatherFire fire stays lit across every single location.</p>
+                <p>Driving operational excellence across all FeatherFire locations.</p>
             </div>
 
             <div class="leader-card">
-                <div class="profile-img placeholder-img">IMAGE PENDING</div>
-                <h3>[Name Here]</h3>
+                <div class="profile-img">RM</div>
+                <h3>[Name Pending]</h3>
                 <span class="role">Regional Manager</span>
-                <p>Connecting our kitchens to the community and maintaining the highest standards of service in the region.</p>
+                <p>Ensuring every region experiences the perfect FeatherFire crunch.</p>
             </div>
         </div>
     </div>
