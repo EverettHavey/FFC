@@ -6,54 +6,112 @@
     <title>Our Story | FeatherFire Chicken</title>
     <link rel="icon" type="image/png" href="images/FFCLogo.png">
     <style>
-        :root { --fire: #e4002b; --charcoal: #1a1a1a; }
-        body { font-family: 'Helvetica', sans-serif; margin: 0; line-height: 1.8; color: #333; }
-        nav { background: #fff; height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; border-bottom: 4px solid var(--fire); position: sticky; top: 0; z-index: 1000; }
+        :root { --fire: #e4002b; --charcoal: #1a1a1a; --white: #ffffff; --gray: #f4f4f4; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--white); color: var(--charcoal); line-height: 1.8; }
+
+        /* Navigation */
+        nav { background: var(--white); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; border-bottom: 4px solid var(--fire); position: sticky; top: 0; z-index: 1000; }
         .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links a { text-decoration: none; color: #000; font-weight: 800; text-transform: uppercase; }
+        .nav-links a { text-decoration: none; color: var(--charcoal); font-weight: 800; text-transform: uppercase; font-size: 0.9rem; }
         .nav-links a.active { color: var(--fire); }
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
         .hamburger span { width: 30px; height: 3px; background: var(--fire); }
 
-        .about-hero { background: var(--charcoal); color: white; padding: 100px 5%; text-align: center; }
-        .content { max-width: 900px; margin: 60px auto; padding: 0 20px; }
-        .brand-image { width: 100%; border-radius: 20px; margin: 40px 0; }
-        .highlight { color: var(--fire); font-weight: bold; }
+        /* Sections */
+        .hero-banner { background: var(--charcoal); color: white; padding: 60px 5%; text-align: center; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        
+        .story-section { display: flex; align-items: center; gap: 40px; margin-bottom: 60px; flex-wrap: wrap; }
+        .story-text { flex: 1; min-width: 300px; }
+        .team-img { flex: 1; min-width: 300px; border-radius: 15px; box-shadow: 10px 10px 0 var(--fire); }
+
+        /* Leadership Grid */
+        .leadership-header { text-align: center; margin-bottom: 40px; }
+        .leadership-header h2 { font-size: 2.5rem; text-transform: uppercase; }
+        .leadership-header span { color: var(--fire); }
+
+        .leader-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 20px; }
+        .leader-card { background: var(--gray); padding: 30px; border-radius: 20px; text-align: center; transition: 0.3s; border: 1px solid #ddd; }
+        .leader-card:hover { transform: translateY(-10px); border-color: var(--fire); }
+        
+        /* Founder specifically larger */
+        .leader-card.ceo { grid-column: 1 / -1; max-width: 500px; margin: 0 auto 20px; background: var(--white); border: 2px solid var(--fire); }
+
+        .profile-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 5px solid var(--fire); background: #ccc; }
+        .placeholder-img { display: flex; align-items: center; justify-content: center; background: #ddd; color: #777; font-weight: bold; font-size: 0.8rem; margin: 0 auto 20px; }
+
+        h3 { margin-bottom: 5px; font-size: 1.4rem; }
+        .role { color: var(--fire); font-weight: bold; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 15px; display: block; }
 
         @media (max-width: 768px) {
-            .nav-links { position: fixed; right: -100%; top: 0; height: 100vh; width: 75%; background: #fff; flex-direction: column; align-items: center; justify-content: center; transition: 0.4s; }
+            .nav-links { position: fixed; right: -100%; top: 0; height: 100vh; width: 80%; background: white; flex-direction: column; align-items: center; justify-content: center; transition: 0.4s; }
             .nav-links.active { right: 0; }
             .hamburger { display: flex; z-index: 1100; }
         }
     </style>
 </head>
 <body>
+
     <nav>
-        <div class="logo"><img src="images/FFCLogo.png" alt="FFC" style="height:50px;"></div>
-        <ul class="nav-links" id="menu">
+        <div class="logo"><img src="images/FFCLogo.png" alt="FFC Logo"></div>
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
             <li><a href="menu.html">Menu</a></li>
             <li><a href="aboutus.html" class="active">Our Story</a></li>
             <li><a href="careers.html">Careers</a></li>
         </ul>
-        <div class="hamburger" onclick="document.getElementById('menu').classList.toggle('active')">
+        <div class="hamburger" onclick="toggleMenu()">
             <span></span><span></span><span></span>
         </div>
     </nav>
 
-    <div class="about-hero">
-        <h1>BORN FROM THE <span class="highlight">FLAME</span></h1>
-        <p>The FeatherFire Chicken Legacy.</p>
+    <header class="hero-banner">
+        <h1>Our <span>Heritage</span></h1>
+    </header>
+
+    <div class="container">
+        <div class="story-section">
+            <div class="story-text">
+                <h2>The FeatherFire Way</h2>
+                <p>Born from a passion for the ultimate crunch, FeatherFire Chicken combines traditional flame-grilling techniques with our signature deep-fried coating. We don't just serve chicken; we serve a legacy of heat and flavor.</p>
+            </div>
+            <img src="images/Team.webp" alt="The FFC Team" class="team-img">
+        </div>
+
+        <div class="leadership-header">
+            <h2>The <span>Leadership</span> Team</h2>
+        </div>
+
+        <div class="leader-grid">
+            <div class="leader-card ceo">
+                <img src="images/Founder.webp" alt="Robert" class="profile-img">
+                <h3>Robert</h3>
+                <span class="role">Chief Executive Officer</span>
+                <p>The visionary behind the flame. Robert's "Golden Standard" ensures every bucket meets the FeatherFire promise of quality.</p>
+            </div>
+
+            <div class="leader-card">
+                <div class="profile-img placeholder-img">IMAGE PENDING</div>
+                <h3>[Name Here]</h3>
+                <span class="role">Chief Operating Officer</span>
+                <p>Overseeing global operations and ensuring that the FeatherFire fire stays lit across every single location.</p>
+            </div>
+
+            <div class="leader-card">
+                <div class="profile-img placeholder-img">IMAGE PENDING</div>
+                <h3>[Name Here]</h3>
+                <span class="role">Regional Manager</span>
+                <p>Connecting our kitchens to the community and maintaining the highest standards of service in the region.</p>
+            </div>
+        </div>
     </div>
 
-    <div class="content">
-        <h2>The FeatherFire Philosophy</h2>
-        <p>FeatherFire Chicken didn't start in a boardroom; it started over a backyard grill with a mission to find the perfect balance of "Feather-light" crispy skin and "Fire-fused" spice levels. We believe that great chicken requires patience, precision, and a little bit of heat.</p>
-        
-        <img src="images/Team.webp" alt="FeatherFire Team" class="brand-image">
-        
-        <h3>Quality Above All</h3>
-        <p>Every piece of <span class="highlight">FFC</span> is hand-breaded by our expert team. We use a proprietary blend of 14 spices that gives our chicken its distinct FeatherFire glow. We're not just a restaurant; we're a community of flavor enthusiasts dedicated to the craft of the perfect crunch.</p>
-    </div>
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+    </script>
+
 </body>
 </html>
