@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FFC | Finger Flickin' Chicken</title>
+    <style>
+        :root { --primary: #e4002b; --dark: #202124; --white: #ffffff; }
+        body { margin: 0; font-family: 'Arial Black', sans-serif; background: #f4f4f4; }
+        
+        /* Navigation */
+        nav { background: var(--white); display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 4px solid var(--primary); position: sticky; top: 0; z-index: 1000; }
+        .logo img { height: 50px; }
+        .nav-links { display: none; list-style: none; gap: 20px; }
+        .nav-links a { text-decoration: none; color: var(--dark); text-transform: uppercase; font-weight: bold; }
+        .nav-links a:hover { color: var(--primary); }
+        .hamburger { display: block; cursor: pointer; font-size: 28px; color: var(--primary); }
+
+        /* Mobile Menu Active */
+        .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: var(--white); padding: 20px; border-bottom: 2px solid var(--primary); }
+
+        /* Hero Section */
+        .hero { background: var(--primary); color: var(--white); text-align: center; padding: 60px 20px; }
+        .hero h1 { font-size: 3rem; margin: 0; text-transform: uppercase; }
+        .hero p { font-size: 1.2rem; }
+        .hero-img { width: 100%; max-width: 500px; margin-top: 20px; border-radius: 10px; }
+        .btn { display: inline-block; background: var(--dark); color: white; padding: 15px 30px; text-decoration: none; margin-top: 20px; border-radius: 50px; }
+
+        @media (min-width: 768px) {
+            .nav-links { display: flex; }
+            .hamburger { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><img src="images/FFCLogo.png" alt="FFC Logo"></div>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="careers.html">Careers</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>Finger Flickin' Chicken</h1>
+        <p>The legendary taste you love, delivered fresh.</p>
+        <img src="images/Normal.webp" alt="Fried Chicken" class="hero-img">
+        <br>
+        <a href="menu.html" class="btn">ORDER NOW</a>
+    </header>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,1 +1,45 @@
-Hello
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | FFC</title>
+    <style>
+        :root { --primary: #e4002b; --white: #fff; }
+        body { margin: 0; font-family: sans-serif; background: #eee; text-align: center; }
+        nav { background: var(--white); display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 4px solid var(--primary); }
+        .nav-links { display: none; list-style: none; }
+        .nav-links.active { display: block; position: absolute; top: 60px; background: white; width: 100%; left: 0; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
+        .card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .card img { width: 100%; border-radius: 5px; height: 200px; object-fit: cover; }
+        .card h3 { color: var(--primary); text-transform: uppercase; }
+        .price { font-weight: bold; font-size: 1.2rem; }
+        @media (min-width: 768px) { .nav-links { display: flex; gap: 15px; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo"><strong>FFC</strong></div>
+        <div onclick="document.getElementById('nl').classList.toggle('active')" style="cursor:pointer; color:red; font-size:30px;">☰</div>
+        <ul class="nav-links" id="nl">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+        </ul>
+    </nav>
+
+    <h1>Our Menu</h1>
+    <div class="menu-grid">
+        <div class="card">
+            <img src="images/Normal.webp" alt="Bucket">
+            <h3>Classic Bucket</h3>
+            <p class="price">$19.99</p>
+        </div>
+        <div class="card">
+            <img src="images/Festive.webp" alt="Festive">
+            <h3>Festive Feast</h3>
+            <p class="price">$24.99</p>
+        </div>
+    </div>
+</body>
+</html>
