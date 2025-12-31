@@ -6,8 +6,8 @@
     <title>Our Story | FeatherFire Chicken</title>
     <link rel="icon" type="image/png" href="images/FFCLogo.png">
     <style>
-        :root { --fire: #e4002b; --charcoal: #1a1a1a; --white: #ffffff; --gray: #f4f4f4; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        :root { --fire: #e4002b; --charcoal: #1a1a1a; --white: #ffffff; --gray: #f8f8f8; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; }
         
         /* Navigation Fix */
         nav { 
@@ -24,81 +24,64 @@
         }
 
         .logo img { 
-            height: 50px; /* Locked height to prevent full-screen expansion */
+            height: 50px; 
             width: auto; 
             display: block;
         }
 
         .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links a { text-decoration: none; color: var(--charcoal); font-weight: 800; text-transform: uppercase; font-size: 0.9rem; }
+        .nav-links a { text-decoration: none; color: var(--charcoal); font-weight: 800; text-transform: uppercase; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a.active { color: var(--fire); }
 
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
-        .hamburger span { width: 30px; height: 3px; background: var(--fire); }
+        .hamburger span { width: 30px; height: 3px; background: var(--fire); transition: 0.3s; }
 
-        /* Leadership Section */
+        /* Content Layout */
         .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
-        .leadership-header { text-align: center; margin-bottom: 50px; }
-        .leadership-header h2 { font-size: 2.5rem; text-transform: uppercase; }
-        .leadership-header span { color: var(--fire); }
+        
+        /* Hero Section with Team Shot */
+        .story-hero { display: flex; align-items: center; gap: 50px; margin-bottom: 80px; flex-wrap: wrap; }
+        .story-content { flex: 1; min-width: 320px; }
+        .story-content h1 { font-size: 3rem; margin-bottom: 20px; line-height: 1.1; }
+        .story-content span { color: var(--fire); }
+        .story-image { flex: 1; min-width: 320px; }
+        .story-image img { width: 100%; border-radius: 20px; box-shadow: 20px 20px 0px var(--fire); }
 
-        .leader-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 30px; 
-        }
-
-        .leader-card { 
-            background: var(--gray); 
+        /* Refined Core Values Cards */
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 60px 0; }
+        .value-card { 
+            background: var(--white); 
             padding: 40px; 
-            border-radius: 20px; 
-            text-align: center; 
-            border: 1px solid #ddd;
+            border-radius: 15px; 
+            text-align: left; 
+            border-left: 8px solid var(--fire);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
             transition: 0.3s;
         }
+        .value-card:hover { transform: translateY(-10px); }
+        .value-card h4 { font-size: 1.4rem; color: var(--charcoal); margin-bottom: 10px; text-transform: uppercase; }
+        .value-card p { color: #555; line-height: 1.6; }
 
-        .leader-card:hover { transform: translateY(-5px); border-color: var(--fire); }
-
+        /* Leadership Grid */
+        .leadership-header { text-align: center; margin-top: 100px; margin-bottom: 50px; }
+        .leader-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .leader-card { background: var(--gray); padding: 40px; border-radius: 20px; text-align: center; border: 1px solid #eee; }
         .profile-img { 
-            width: 150px; 
-            height: 150px; 
+            width: 160px; height: 160px; 
             border-radius: 50%; 
             object-fit: cover; 
             margin: 0 auto 20px; 
-            border: 5px solid var(--fire); 
-            background: #ccc; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #777;
+            border: 6px solid var(--fire); 
+            background: #ddd;
+            display: flex; align-items: center; justify-content: center; font-weight: bold;
         }
-
-        .role { 
-            display: block; 
-            color: var(--fire); 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            font-size: 0.9rem; 
-            margin-bottom: 10px; 
-        }
+        .role { display: block; color: var(--fire); font-weight: 800; text-transform: uppercase; margin-bottom: 10px; font-size: 0.85rem; letter-spacing: 1px; }
 
         @media (max-width: 768px) {
-            .nav-links { 
-                position: fixed; 
-                right: -100%; 
-                top: 0; 
-                height: 100vh; 
-                width: 80%; 
-                background: white; 
-                flex-direction: column; 
-                align-items: center; 
-                justify-content: center; 
-                transition: 0.4s; 
-                box-shadow: -10px 0 20px rgba(0,0,0,0.1);
-            }
+            .nav-links { position: fixed; right: -100%; top: 0; height: 100vh; width: 80%; background: white; flex-direction: column; align-items: center; justify-content: center; transition: 0.4s; z-index: 1000; }
             .nav-links.active { right: 0; }
             .hamburger { display: flex; z-index: 1100; }
+            .story-content h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -120,8 +103,33 @@
     </nav>
 
     <div class="container">
+        <section class="story-hero">
+            <div class="story-content">
+                <h1>Crafting the <span>Flame-Fused</span> Experience</h1>
+                <p>FeatherFire Chicken isn't just about food; it's about the precision of the crunch and the soul of the spice. We marinate every piece for 24 hours to ensure that every bite is as bold as the first.</p>
+            </div>
+            <div class="story-image">
+                <img src="images/Team.webp" alt="FeatherFire Team Group Shot">
+            </div>
+        </section>
+
+        <div class="values-grid">
+            <div class="value-card">
+                <h4>Unmatched Quality</h4>
+                <p>No shortcuts. No fillers. Only the freshest poultry and signature spices prepared daily in our kitchens.</p>
+            </div>
+            <div class="value-card">
+                <h4>Bold Innovation</h4>
+                <p>Constantly evolving our menu and Flame-Fused™ techniques to redefine what fried chicken can be.</p>
+            </div>
+            <div class="value-card">
+                <h4>Community Heart</h4>
+                <p>Giving back to the neighborhoods that make us who we are through local sourcing and community support.</p>
+            </div>
+        </div>
+
         <div class="leadership-header">
-            <h2>Our <span>Leadership</span> Team</h2>
+            <h2>The <span>Executive</span> Team</h2>
         </div>
 
         <div class="leader-grid">
@@ -129,7 +137,7 @@
                 <img src="images/Founder.webp" alt="Robert" class="profile-img">
                 <h3>Robert</h3>
                 <span class="role">Chief Executive Officer</span>
-                <p>Leading the fire with a focus on flavor and community impact.</p>
+                <p>The visionary architect behind the FeatherFire flavor legacy.</p>
             </div>
 
             <div class="leader-card">
@@ -143,7 +151,7 @@
                 <div class="profile-img">RM</div>
                 <h3>[Name Pending]</h3>
                 <span class="role">Regional Manager</span>
-                <p>Ensuring every region experiences the perfect FeatherFire crunch.</p>
+                <p>Ensuring every region maintains the Golden Standard of crunch.</p>
             </div>
         </div>
     </div>
