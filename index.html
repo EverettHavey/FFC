@@ -3,60 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FFC | Finger Flickin' Chicken</title>
+    <title>FFC | Home of Robert's Original Recipe</title>
     <style>
-        :root { --primary: #e4002b; --dark: #202124; --white: #ffffff; }
-        body { margin: 0; font-family: 'Arial Black', sans-serif; background: #f4f4f4; }
+        :root { --red: #e4002b; --black: #202124; --white: #ffffff; --gray: #f4f4f4; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background: var(--white); overflow-x: hidden; }
+
+        /* Shared Navigation System */
+        nav { background: var(--white); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-bottom: 4px solid var(--red); }
+        .logo img { height: 55px; cursor: pointer; }
         
-        /* Navigation */
-        nav { background: var(--white); display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 4px solid var(--primary); position: sticky; top: 0; z-index: 1000; }
-        .logo img { height: 50px; }
-        .nav-links { display: none; list-style: none; gap: 20px; }
-        .nav-links a { text-decoration: none; color: var(--dark); text-transform: uppercase; font-weight: bold; }
-        .nav-links a:hover { color: var(--primary); }
-        .hamburger { display: block; cursor: pointer; font-size: 28px; color: var(--primary); }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: var(--black); font-weight: 800; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--red); }
 
-        /* Mobile Menu Active */
-        .nav-links.active { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: var(--white); padding: 20px; border-bottom: 2px solid var(--primary); }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1100; }
+        .hamburger span { width: 30px; height: 3px; background: var(--black); border-radius: 2px; transition: 0.3s; }
 
-        /* Hero Section */
-        .hero { background: var(--primary); color: var(--white); text-align: center; padding: 60px 20px; }
-        .hero h1 { font-size: 3rem; margin: 0; text-transform: uppercase; }
-        .hero p { font-size: 1.2rem; }
-        .hero-img { width: 100%; max-width: 500px; margin-top: 20px; border-radius: 10px; }
-        .btn { display: inline-block; background: var(--dark); color: white; padding: 15px 30px; text-decoration: none; margin-top: 20px; border-radius: 50px; }
-
-        @media (min-width: 768px) {
-            .nav-links { display: flex; }
-            .hamburger { display: none; }
+        /* Mobile Menu State */
+        @media (max-width: 768px) {
+            .nav-links { position: fixed; right: -100%; top: 0; height: 100vh; width: 80%; background: var(--white); flex-direction: column; align-items: center; justify-content: center; transition: 0.5s; box-shadow: -10px 0 20px rgba(0,0,0,0.1); }
+            .nav-links.active { right: 0; }
+            .hamburger { display: flex; }
+            .hamburger.toggle span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+            .hamburger.toggle span:nth-child(2) { opacity: 0; }
+            .hamburger.toggle span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
         }
+
+        /* Hero Styling */
+        .hero { display: flex; align-items: center; min-height: 85vh; padding: 0 10%; gap: 50px; flex-wrap: wrap; }
+        .hero-text { flex: 1; min-width: 300px; }
+        .hero-text h1 { font-size: clamp(3rem, 8vw, 5rem); line-height: 0.9; margin-bottom: 20px; color: var(--black); font-weight: 900; }
+        .hero-text span { color: var(--red); }
+        .hero-img { flex: 1; min-width: 300px; position: relative; }
+        .hero-img img { width: 100%; border-radius: 20px; transform: rotate(2deg); box-shadow: 20px 20px 0 var(--red); }
+        .btn { display: inline-block; background: var(--red); color: white; padding: 20px 45px; text-decoration: none; font-weight: bold; border-radius: 5px; margin-top: 25px; transition: 0.3s; }
+        .btn:hover { background: var(--black); }
     </style>
 </head>
 <body>
-
     <nav>
-        <div class="logo"><img src="images/FFCLogo.png" alt="FFC Logo"></div>
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
-        <ul class="nav-links" id="navLinks">
+        <div class="logo"><img src="images/FFCLogo.png" alt="FFC"></div>
+        <ul class="nav-links" id="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="menu.html">Menu</a></li>
-            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="menu.html">The Menu</a></li>
+            <li><a href="aboutus.html">Our Story</a></li>
             <li><a href="careers.html">Careers</a></li>
         </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
     </nav>
 
-    <header class="hero">
-        <h1>Finger Flickin' Chicken</h1>
-        <p>The legendary taste you love, delivered fresh.</p>
-        <img src="images/Normal.webp" alt="Fried Chicken" class="hero-img">
-        <br>
-        <a href="menu.html" class="btn">ORDER NOW</a>
-    </header>
+    <section class="hero">
+        <div class="hero-text">
+            <h1>NOT JUST CHICKEN.<br><span>IT'S ROBERT'S.</span></h1>
+            <p>Freshly hand-breaded, pressure cooked to perfection, and served with a side of legacy.</p>
+            <a href="menu.html" class="btn">VIEW MENU</a>
+        </div>
+        <div class="hero-img">
+            <img src="images/Normal.webp" alt="Fried Chicken">
+        </div>
+    </section>
 
     <script>
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
+        const burger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav-links');
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            burger.classList.toggle('toggle');
+        });
     </script>
 </body>
 </html>

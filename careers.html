@@ -5,36 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Careers | FFC</title>
     <style>
-        body { font-family: sans-serif; margin: 0; background: #f8f8f8; }
-        .hero-careers { height: 300px; background: url('images/Employee1.webp') center/cover; position: relative; }
-        .overlay { background: rgba(0,0,0,0.5); height: 100%; display: flex; align-items: center; justify-content: center; color: white; }
-        .form-container { padding: 30px; max-width: 500px; margin: -50px auto 20px; background: white; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        input, select { width: 100%; padding: 12px; margin: 10px 0; box-sizing: border-box; }
-        button { width: 100%; background: #e4002b; color: white; border: none; padding: 15px; font-weight: bold; cursor: pointer; }
+        :root { --red: #e4002b; --black: #202124; }
+        body { font-family: sans-serif; margin:0; background: #fff; }
+        nav { background: #fff; height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; border-bottom: 4px solid var(--red); position: sticky; top:0; z-index:1000; }
+        
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: var(--black); font-weight: 800; text-transform: uppercase; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+        .hamburger span { width: 30px; height: 3px; background: var(--black); }
+
+        @media (max-width: 768px) {
+            .nav-links { position: fixed; right: -100%; top: 0; height: 100vh; width: 80%; background: #fff; flex-direction: column; align-items: center; justify-content: center; transition: 0.5s; box-shadow: -10px 0 20px rgba(0,0,0,0.1); }
+            .nav-links.active { right: 0; }
+            .hamburger { display: flex; z-index: 1100; }
+        }
+
+        .hero { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/Employee1.webp') center/cover; height: 350px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
+        
+        .form-box { max-width: 600px; margin: -60px auto 60px; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-top: 10px solid var(--red); }
+        input, select, textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: 2px solid #eee; border-radius: 5px; outline: none; }
+        input:focus { border-color: var(--red); }
+        .apply-btn { width: 100%; background: var(--red); color: white; border: none; padding: 20px; font-weight: 900; letter-spacing: 2px; cursor: pointer; transition: 0.3s; }
+        .apply-btn:hover { background: var(--black); }
     </style>
 </head>
 <body>
-    <div class="hero-careers">
-        <div class="overlay"><h1>Join the Family</h1></div>
+    <nav>
+        <div class="logo"><img src="images/FFCLogo.png" alt="FFC" style="height:50px;"></div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">The Menu</a></li>
+            <li><a href="aboutus.html">Our Story</a></li>
+            <li><a href="careers.html">Careers</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <div class="hero">
+        <h1>WORK FOR ROBERT</h1>
+        <p>Great people. Great chicken. Great future.</p>
     </div>
-    <div class="form-container">
-        <h3>Apply Now</h3>
-        <form id="applyForm">
-            <input type="text" placeholder="Full Name" required>
-            <input type="email" placeholder="Email Address" required>
+
+    <div class="form-box">
+        <h3>Submit Your Interest</h3>
+        <form onsubmit="event.preventDefault(); alert('Robert says thanks! We will be in touch.');">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
             <select>
-                <option>Cook</option>
-                <option>Cashier</option>
+                <option>Team Member</option>
+                <option>Kitchen Legend</option>
                 <option>Manager</option>
             </select>
-            <button type="submit">SUBMIT APPLICATION</button>
+            <textarea placeholder="Tell Robert why you'd be a great fit..." rows="5"></textarea>
+            <button type="submit" class="apply-btn">APPLY NOW</button>
         </form>
     </div>
+
     <script>
-        document.getElementById('applyForm').onsubmit = (e) => {
-            e.preventDefault();
-            alert('Application Sent! We will contact you soon.');
-        };
+        document.getElementById('hamburger').onclick = () => { document.getElementById('nav-links').classList.toggle('active'); };
     </script>
 </body>
 </html>

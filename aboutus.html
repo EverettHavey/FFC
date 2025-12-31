@@ -3,26 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | FFC</title>
+    <title>Our Story | FFC</title>
     <style>
-        body { font-family: Arial; margin: 0; line-height: 1.6; }
-        .container { padding: 20px; max-width: 800px; margin: auto; }
-        .red-header { background: #e4002b; color: white; padding: 40px; text-align: center; }
-        .founder-img { width: 150px; height: 150px; border-radius: 50%; border: 5px solid white; }
-        .team-section img { width: 100%; margin: 20px 0; border-radius: 10px; }
+        :root { --red: #e4002b; --black: #202124; }
+        body { font-family: 'Helvetica', sans-serif; margin: 0; background: #fafafa; }
+        
+        /* Navigation (Replicated) */
+        nav { background: #fff; height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; border-bottom: 4px solid var(--red); position: sticky; top:0; z-index:1000; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: var(--black); font-weight: 800; text-transform: uppercase; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+        .hamburger span { width: 30px; height: 3px; background: var(--black); }
+
+        @media (max-width: 768px) {
+            .nav-links { position: fixed; right: -100%; top: 0; height: 100vh; width: 80%; background: #fff; flex-direction: column; align-items: center; justify-content: center; transition: 0.5s; box-shadow: -10px 0 20px rgba(0,0,0,0.1); }
+            .nav-links.active { right: 0; }
+            .hamburger { display: flex; z-index: 1100; }
+        }
+
+        .founder-hero { background: var(--black); color: white; padding: 80px 10%; text-align: center; }
+        .founder-img { width: 220px; height: 220px; border-radius: 50%; border: 8px solid var(--red); margin-bottom: 25px; object-fit: cover; }
+        
+        .content-section { max-width: 800px; margin: 60px auto; padding: 0 20px; line-height: 1.8; font-size: 1.1rem; }
+        .team-grid { display: flex; gap: 20px; margin-top: 40px; flex-wrap: wrap; }
+        .team-grid img { flex: 1; min-width: 300px; border-radius: 15px; }
+        .red-accent { color: var(--red); font-weight: 900; }
     </style>
 </head>
 <body>
-    <div class="red-header">
-        <img src="images/Founder.webp" alt="Founder" class="founder-img">
-        <h1>Our Story</h1>
-    </div>
-    <div class="container">
-        <p>Since the beginning, FFC has been about more than just chicken. It's about a secret recipe and a passion for quality.</p>
-        <div class="team-section">
-            <h2>Meet the Team</h2>
-            <img src="images/Team.webp" alt="Our Team">
+    <nav>
+        <div class="logo"><img src="images/FFCLogo.png" alt="FFC" style="height:50px;"></div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">The Menu</a></li>
+            <li><a href="aboutus.html">Our Story</a></li>
+            <li><a href="careers.html">Careers</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <header class="founder-hero">
+        <img src="images/Founder.webp" alt="Founder Robert" class="founder-img">
+        <h1>THE LEGEND OF <span class="red-accent">ROBERT</span></h1>
+        <p>A modern visionary with an old-school recipe.</p>
+    </header>
+
+    <div class="content-section">
+        <h2>From One Kitchen to the World</h2>
+        <p>Robert started FFC with a simple philosophy: <span class="red-accent">"Never settle for just good enough."</span> While others focused on speed, Robert focused on the 24-hour marination process that makes our chicken fall off the bone. </p>
+        <p>Today, Robert's legacy lives on in every bucket we serve. We still hand-bread every piece, following the exact 11 herbs and spices Robert perfected in his basement workshop decades ago.</p>
+        
+        <div class="team-grid">
+            <img src="images/Team.webp" alt="Our Modern Team">
+            <div>
+                <h3>Our Modern Team</h3>
+                <p>We aren't just employees; we are the guardians of the crunch. Every member of our team is trained in Robert's "Golden Standard" of service.</p>
+            </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('hamburger').onclick = () => { document.getElementById('nav-links').classList.toggle('active'); };
+    </script>
 </body>
 </html>
