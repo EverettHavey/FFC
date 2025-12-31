@@ -3,66 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Careers | FFC</title>
+    <title>Careers | FeatherFire Chicken</title>
+    <link rel="icon" type="image/png" href="images/FFCLogo.png">
     <style>
-        :root { --red: #e4002b; --black: #202124; }
-        body { font-family: sans-serif; margin:0; background: #fff; }
-        nav { background: #fff; height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; border-bottom: 4px solid var(--red); position: sticky; top:0; z-index:1000; }
-        
+        :root { --fire: #e4002b; --charcoal: #1a1a1a; }
+        body { font-family: sans-serif; margin: 0; background: #fdfdfd; }
+        nav { background: #fff; height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; border-bottom: 4px solid var(--fire); position: sticky; top: 0; z-index: 1000; }
         .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links a { text-decoration: none; color: var(--black); font-weight: 800; text-transform: uppercase; }
+        .nav-links a { text-decoration: none; color: #000; font-weight: 800; text-transform: uppercase; }
+        .nav-links a.active { color: var(--fire); }
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
-        .hamburger span { width: 30px; height: 3px; background: var(--black); }
+        .hamburger span { width: 30px; height: 3px; background: var(--fire); }
+
+        .career-hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/Employee1.webp') center/cover; height: 400px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .apply-box { max-width: 600px; margin: -50px auto 50px; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        input, select, textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: 2px solid #eee; border-radius: 6px; outline: none; }
+        input:focus { border-color: var(--fire); }
+        .submit-btn { width: 100%; background: var(--fire); color: white; border: none; padding: 18px; font-weight: 900; cursor: pointer; border-radius: 6px; }
 
         @media (max-width: 768px) {
-            .nav-links { position: fixed; right: -100%; top: 0; height: 100vh; width: 80%; background: #fff; flex-direction: column; align-items: center; justify-content: center; transition: 0.5s; box-shadow: -10px 0 20px rgba(0,0,0,0.1); }
+            .nav-links { position: fixed; right: -100%; top: 0; height: 100vh; width: 75%; background: #fff; flex-direction: column; align-items: center; justify-content: center; transition: 0.4s; }
             .nav-links.active { right: 0; }
             .hamburger { display: flex; z-index: 1100; }
+            .apply-box { margin: 20px; }
         }
-
-        .hero { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/Employee1.webp') center/cover; height: 350px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
-        
-        .form-box { max-width: 600px; margin: -60px auto 60px; background: white; padding: 40px; border-radius: 10px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-top: 10px solid var(--red); }
-        input, select, textarea { width: 100%; padding: 15px; margin-bottom: 20px; border: 2px solid #eee; border-radius: 5px; outline: none; }
-        input:focus { border-color: var(--red); }
-        .apply-btn { width: 100%; background: var(--red); color: white; border: none; padding: 20px; font-weight: 900; letter-spacing: 2px; cursor: pointer; transition: 0.3s; }
-        .apply-btn:hover { background: var(--black); }
     </style>
 </head>
 <body>
     <nav>
         <div class="logo"><img src="images/FFCLogo.png" alt="FFC" style="height:50px;"></div>
-        <ul class="nav-links" id="nav-links">
+        <ul class="nav-links" id="menu">
             <li><a href="index.html">Home</a></li>
-            <li><a href="menu.html">The Menu</a></li>
+            <li><a href="menu.html">Menu</a></li>
             <li><a href="aboutus.html">Our Story</a></li>
-            <li><a href="careers.html">Careers</a></li>
+            <li><a href="careers.html" class="active">Careers</a></li>
         </ul>
-        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        <div class="hamburger" onclick="document.getElementById('menu').classList.toggle('active')">
+            <span></span><span></span><span></span>
+        </div>
     </nav>
 
-    <div class="hero">
-        <h1>WORK FOR ROBERT</h1>
-        <p>Great people. Great chicken. Great future.</p>
+    <div class="career-hero">
+        <div><h1>JOIN THE FIRE CREW</h1><p>Start your journey with FeatherFire Chicken.</p></div>
     </div>
 
-    <div class="form-box">
-        <h3>Submit Your Interest</h3>
-        <form onsubmit="event.preventDefault(); alert('Robert says thanks! We will be in touch.');">
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
+    <div class="apply-box">
+        <h2 style="margin-bottom: 20px; color: var(--fire);">Apply Now</h2>
+        <form onsubmit="event.preventDefault(); alert('Application sent to FeatherFire HQ!');">
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
             <select>
-                <option>Team Member</option>
-                <option>Kitchen Legend</option>
-                <option>Manager</option>
+                <option>Grill Master</option>
+                <option>Service Pro</option>
+                <option>Store Leader</option>
             </select>
-            <textarea placeholder="Tell Robert why you'd be a great fit..." rows="5"></textarea>
-            <button type="submit" class="apply-btn">APPLY NOW</button>
+            <textarea placeholder="Why do you want to join FeatherFire?" rows="4"></textarea>
+            <button type="submit" class="submit-btn">SEND APPLICATION</button>
         </form>
     </div>
-
-    <script>
-        document.getElementById('hamburger').onclick = () => { document.getElementById('nav-links').classList.toggle('active'); };
-    </script>
 </body>
 </html>
